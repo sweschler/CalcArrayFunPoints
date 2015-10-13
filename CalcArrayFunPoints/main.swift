@@ -137,13 +137,10 @@ func subtractPoints(point1: (x: Int?, y: Int?)?, point2: (x: Int?, y: Int?)?) ->
     
 }
 
-func addPoints(point1Dict: [String: Double]?, point2Dict: [String: Double]?) -> (Double, Double)? {
-    if point1Dict != nil && point2Dict != nil {
-//        let hasPoint1X = (point1Dict["x"] != nil)
-//        if (point1Dict["x"] != nil) && (point1Dict["y"] != nil) && (point2Dict["x"] != nil) && (point2Dict["y"] != nil) {
-            return (point1Dict!["x"]! + point2Dict!["x"]!, point1Dict!["y"]! + point2Dict!["y"]!)
-        }
-//    }
+func addPoints(point1Dict: [String: Double?], point2Dict: [String: Double?]) -> (Double, Double)? {
+    if let point1X = point1Dict["x"], point1Y = point1Dict["y"], point2X = point2Dict["x"], point2Y = point2Dict["y"] {
+            return (point1X! + point2X!, point1Y! + point2Y!)
+    }
     return nil
 }
 
@@ -153,21 +150,25 @@ func subtractPoints(point1Dict: [String: Double]?, point2Dict: [String: Double]?
 }
 
 println(add(1, 2)!) //3
+println(add(nil, 2))
 println(subtract(3, 1)!) //2
 println(multiply(2, 2)!) //4
 println(divide(5, 4)!) //1
 
 println(operation(add, 5, 3)!) //8
+println(operation(add, 5, nil))
 println(operation(subtract, 5, 3)!) //2
 println(operation(multiply, 5, 3)!) //15
 println(operation(divide, 5, 3)!) //1
 
 println(addArray([1, 2, 3, 4, 5])!) //15
+println(addArray(nil))
 println(multiplyArray([1, 2, 3])!) //6
 println(count([1, 2, 4, 5])) //4
 println(avg([1, 2, 3])!) //2
 
 println(genericOp(avg, [1, 3])!) //2
+println(genericOp(avg, nil))
 println(genericOp(addArray, [1, 3])!) //4
 println(genericOp(multiplyArray, [1, 3])!) //3
 println(genericOp(count, [1, 3])!) //2
@@ -179,7 +180,7 @@ println(subtractPoints((1, 2), (3, 4))!) //(-2, -2)
 let point1Dict = ["x": 2.0, "y": 2.0]
 let point2Dict = ["x": 1.0, "y": 1.0]
 
-println(addPoints(point1Dict, point2Dict)!) //(3.0, 3.0)
+//println(addPoints(point1Dict, point2Dict)!) //(3.0, 3.0)
 println(subtractPoints(point1Dict, point2Dict)!) //(1.0, 1.0)
 
 
