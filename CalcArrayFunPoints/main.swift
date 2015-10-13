@@ -128,17 +128,24 @@ func subtractPoints(point1: (x: Int?, y: Int?)?, point2: (x: Int?, y: Int?)?) ->
 }
 
 // Add two dictionaries together
-func addPoints(point1: [String: Double?], point2: [String: Double?]) -> (Double, Double)? {
-    if let point1X = point1["x"], point1Y = point1["y"], point2X = point2["x"], point2Y = point2["y"] {
-            return (point1X! + point2X!, point1Y! + point2Y!)
+func addPoints(point1: [String: Double]?, point2: [String: Double]?) -> (Double, Double)? {
+    if point1 != nil && point2 != nil {
+        if let point1X = point1!["x"], point1Y = point1!["y"], point2X = point2!["x"], point2Y = point2!["y"] {
+            return (point1X + point2X, point1Y + point2Y)
+        }
     }
     return nil
 }
 
 // Subtract two dictionaries
-func subtractPoints(point1Dict: [String: Double]?, point2Dict: [String: Double]?) -> (Double, Double)? {
-    return (point1Dict!["x"]! - point2Dict!["x"]!, point1Dict!["y"]! - point2Dict!["y"]!)
+func subtractPoints(point1: [String: Double]?, point2: [String: Double]?) -> (Double, Double)? {
+    if point1 != nil && point2 != nil {
+        if let point1X = point1!["x"], point1Y = point1!["y"], point2X = point2!["x"], point2Y = point2!["y"] {
+            return (point1X - point2X, point1Y - point2Y)
 
+        }
+    }
+    return nil
 }
 
 println(add(1, 2)!) //3
@@ -174,8 +181,10 @@ let point2 = ["x": 1.0, "y": 1.0]
 
 //let x = addPoints(point1, point2)
 
-println(addPoints(point1, point2)) //(3.0, 3.0)
-//println(subtractPoints(point1Dict, point2Dict)!) //(1.0, 1.0)
+println(addPoints(point1, point2)!) //(3.0, 3.0)
+println(addPoints(point1, nil)) //nil
+println(subtractPoints(point1, point2)!) //(1.0, 1.0)
+println(subtractPoints(point1, nil)) //nil
 
 
 
