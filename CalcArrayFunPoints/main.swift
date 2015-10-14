@@ -107,7 +107,7 @@ func genericOp(op: [Int]? -> Int?, numList: [Int]?) -> Int? {
 }
 
 // Adds two tuples together
-func addPoints(point1: (x: Double?, y: Double?)?, point2: (x: Double?, y: Double?)?) -> (Double, Double)? {
+func addPoints(point1: (x: Int?, y: Int?)?, point2: (x: Int?, y: Int?)?) -> (Int, Int)? {
     if point1 != nil && point2 != nil && point1!.x != nil && point2!.x != nil
         && point1!.y != nil && point2!.y != nil {
             return (point1!.x! + point2!.x!, point1!.y! + point2!.y!)
